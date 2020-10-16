@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">MyTrivia</string>
+
+    <string name="question_text">My favorite color is blue..?</string>
+    <string name="question_text_two">My first name is Bryce..?</string>
+    <string name="question_text_three">I am an alien..?</string>
+    <string name="question_text_four">Donkeys smoke cigarettes..?</string>
+    <string name="question_text_five">Coffee is a stimulant..?</string>
+
+
+
+
+    <string name="true_button">True</string>
+    <string name="false_button">False</string>
+    <string name="next_button">Next</string>
+
+    <string name="correct_toast">Correct!</string>
+    <string name="incorrect_toast">Incorrect!</string>
+
+</resources>
