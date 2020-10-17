@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mTrueButton;
     private Button mFalseButton;
     private Button mNextButton;
+    private Button mBackButton;
     private TextView mQuestionTextView;
 
     private int mCurrentIndex = 0;
@@ -62,6 +63,20 @@ public class MainActivity extends AppCompatActivity {
                 //does nothing yet, but it will
                 mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
                 updateQuestion();
+            }
+        });
+
+        mBackButton = findViewById(R.id.back_button);
+        mBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //does nothing yet, but it will
+                if (mCurrentIndex > 0) {
+                    mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
+                    updateQuestion();
+                } else {
+                    mCurrentIndex = 0;
+                }
             }
         });
 
