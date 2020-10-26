@@ -1,13 +1,14 @@
 package edu.bberwald0.mytrivia;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private Button mNextButton;
     private Button mBackButton;
     private TextView mQuestionTextView;
+
+    MainViewModel mViewModel;
 
     private int mCurrentIndex = 0;
 
@@ -37,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate() called");
         setContentView(R.layout.activity_main);
+
+        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         mQuestionTextView = findViewById(R.id.question_text_view);
 
