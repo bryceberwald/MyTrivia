@@ -7,12 +7,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+    private static final String KEY_INDEX = "index";
 
     private Button mTrueButton;
     private Button mFalseButton;
@@ -22,16 +24,16 @@ public class MainActivity extends AppCompatActivity {
 
     MainViewModel mViewModel;
 
-    private int mCurrentIndex = 0;
-
-
-    private Question[] mQuestionBank = new Question[] {
-            new Question(R.string.question_text, true),
-            new Question(R.string.question_text_two, true),
-            new Question(R.string.question_text_three, false),
-            new Question(R.string.question_text_four, false),
-            new Question(R.string.question_text_five, true)
-    };
+//    private int mCurrentIndex = 0;
+//
+//
+//    private Question[] mQuestionBank = new Question[] {
+//            new Question(R.string.question_text, true),
+//            new Question(R.string.question_text_two, true),
+//            new Question(R.string.question_text_three, false),
+//            new Question(R.string.question_text_four, false),
+//            new Question(R.string.question_text_five, true)
+//    };
 
 
 
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        Log.d(TAG, "Got a MainViewModel" + mViewModel);
 
         mQuestionTextView = findViewById(R.id.question_text_view);
 
@@ -70,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //does nothing yet, but it will
-                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+                mViewModel.moveToNext();
                 updateQuestion();
             }
         });
@@ -80,16 +83,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //does nothing yet, but it will
-                if (mCurrentIndex > 0) {
-                    mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
-                    updateQuestion();
-                } else {
-                    mCurrentIndex = 0;
-                }
+                mViewModel.moveToBack();
+                updateQuestion();
+
             }
         });
 
+        if (savedInstanceState != null) {
+            mViewModel.mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
+            Log.i(TAG, "Resetting the savedInstanceState");
+        }
+
         updateQuestion();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        Log.i(TAG, "onSaveInstanceState");
+        savedInstanceState.putInt(KEY_INDEX, mViewModel.mCurrentIndex);
     }
 
     @Override
@@ -123,12 +135,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private  void updateQuestion() {
-        int question = mQuestionBank[mCurrentIndex].getTextResId();
+        int question = mViewModel.currentQuestionText();
         mQuestionTextView.setText(question);
     }
 
     private void checkAnswer(boolean userPressedTrue) {
-        boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
+        boolean answerIsTrue = mViewModel.currentQuestionAnswer();
 
         int messageResId = 0;
 
