@@ -16,26 +16,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final String KEY_INDEX = "index";
 
-    private Button mTrueButton;
-    private Button mFalseButton;
-    private Button mNextButton;
-    private Button mBackButton;
     private TextView mQuestionTextView;
 
     MainViewModel mViewModel;
-
-//    private int mCurrentIndex = 0;
-//
-//
-//    private Question[] mQuestionBank = new Question[] {
-//            new Question(R.string.question_text, true),
-//            new Question(R.string.question_text_two, true),
-//            new Question(R.string.question_text_three, false),
-//            new Question(R.string.question_text_four, false),
-//            new Question(R.string.question_text_five, true)
-//    };
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         mQuestionTextView = findViewById(R.id.question_text_view);
 
 
-        mTrueButton = findViewById(R.id.true_button);
+        Button mTrueButton = findViewById(R.id.true_button);
         mTrueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        mFalseButton = findViewById(R.id.false_button);
+        Button mFalseButton = findViewById(R.id.false_button);
         mFalseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mNextButton = findViewById(R.id.next_button);
+        Button mNextButton = findViewById(R.id.next_button);
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mBackButton = findViewById(R.id.back_button);
+        Button mBackButton = findViewById(R.id.back_button);
         mBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
