@@ -1,20 +1,26 @@
 <resources>
     <string name="app_name">MyTrivia</string>
 
+    # Questions
     <string name="question_text">My favorite color is blue..?</string>
     <string name="question_text_two">My first name is Bryce..?</string>
     <string name="question_text_three">I am an alien..?</string>
     <string name="question_text_four">Donkeys smoke cigarettes..?</string>
     <string name="question_text_five">Coffee is a stimulant..?</string>
 
-
-
-
+    # Buttons
     <string name="true_button">True</string>
     <string name="false_button">False</string>
     <string name="next_button">Next</string>
     <string name="back_button">Previous</string>
+    <string name="cheat_button">Cheat!</string>
+    <string name="show_answer_button">Show Answer</string>
 
+    # Text
+    <string name="warning_text">Are you sure you want to do this?</string>
+
+    # Toasts
+    <string name="judgement_toast">Cheating is wrong!</string>
     <string name="correct_toast">Correct!</string>
     <string name="incorrect_toast">Incorrect!</string>
 
